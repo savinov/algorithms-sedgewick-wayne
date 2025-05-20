@@ -7,17 +7,20 @@ public class Exercise25 {
     public static void main(String[] args) {
         // https://math.stackexchange.com/a/1274529
         // https://brestprog.by/topics/gcd/
-        for (int p = 1; p < 100; p++) {
-            for (int q = 1; q < p; q++) {
-                StdOut.printf("p = %d, q = %d\n", p, q);
-                StdOut.printf("gcd(p, q) = gcd(%d, %d) = %d\n", p, q, gcd(p, q));
-                StdOut.printf("gcd(q, p %% q) = gcd(%d, %d) = %d\n\n", q, p % q, gcd(q, p % q));
-            }
-        }
+        // gcd(a, b) = gcd(b, r1) = gcd(r1, r2) = ... = gcd(rn−1, rn) = gcd(rn, 0)
+        // a > b > r1 > r2 > ... > rn-1 > rn
+        // gcd(x, 0) = x
+        gcd(105, 24);
+        gcd(24, 9);
+        gcd(9, 6);
+        gcd(6, 3);
+        gcd(3, 0);
     }
 
     public static int gcd(int p, int q) {
-        return gcd(p, q, 0);
+        var result = gcd(p, q, 0);
+        StdOut.printf("gcd(%d, %d) = %d\n", p, q, result);
+        return result;
     }
 
     public static int gcd(int p, int q, int depth) {
